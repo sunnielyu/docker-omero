@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTAINER hadrien.mary@gmail.com
-
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
 
 # Install dependencies
@@ -12,8 +10,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     openjdk-8-jre-headless ice-services  python-zeroc-ice \
     mencoder nano postgresql-client postgresql-client-common
 
-ENV BRANCH 5.2.7
-ENV ICE 3.5
+ENV BRANCH 5.3.4
+ENV ICE 3.6
 
 # Path variables
 ENV OMERO_DIR /omero
