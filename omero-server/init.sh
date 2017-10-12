@@ -11,8 +11,8 @@ if psql -h "$HOST" -p "$PORT" -U postgres -lqt | cut -d \| -f 1 | grep -w omero;
     exit 0;
 fi
 
-./bin/omero db script "" "" "$PASSWORD" -f $OMERO_DIR/init_db.sql
+./bin/omero db script --password $PASSWORD -f $OMERO_DIR/init_db.sql
 createuser -h "$HOST" -p "$PORT" -U postgres -s omero
 createdb -h "$HOST" -p "$PORT" -O omero omero
-psql -h "$HOST" -p "$PORT" -U omero omero -f $OMERO_DIR/init_db.sql
-rm -f $OMERO_DIR/init_db.sql
+psql -h "$HOST" -p "$PORT" -U omero omero < $OMERO_DIR/init_db.sql
+-rm -f $OMERO_DIR/init_db.sql

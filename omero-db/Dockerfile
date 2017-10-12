@@ -1,7 +1,5 @@
 FROM postgres:9.4
-MAINTAINER hadrien.mary@gmail.com
 
-# Define some variables
 ENV PGDATA /var/lib/postgresql/data
 ENV PGBIN /usr/lib/postgresql/9.4/bin/
 

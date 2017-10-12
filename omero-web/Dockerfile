@@ -3,12 +3,17 @@ FROM ubuntu:16.04
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    software-properties-common python-software-properties
+
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 5E6DA83306132997
+RUN apt-add-repository "deb http://zeroc.com/download/Ice/3.6/ubuntu16.04 stable main"
+
+RUN apt-get update && apt-get install -y \
     unzip wget vim supervisor \
-    python2.7 python-pil python-matplotlib python-pip \
-    python-numpy python-tables python-scipy \
-    openjdk-8-jre-headless ice-services  python-zeroc-ice \
-    mencoder nano postgresql-client postgresql-client-common \
-    nginx-full supervisor python-pip openssl
+    python2.7 python-pil python-matplotlib python-pip python-numpy python-tables python-scipy \
+    openjdk-8-jre-headless mencoder postgresql-client postgresql-client-common \
+    zeroc-ice-all-runtime zeroc-ice-all-dev \
+    nginx-full openssl
 
 ENV BRANCH 5.3.4
 ENV ICE 3.6
